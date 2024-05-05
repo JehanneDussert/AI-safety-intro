@@ -42,7 +42,8 @@ Points of interest:
 
 - [x] introduced in [Attention is all you need](https://arxiv.org/abs/1706.03762)
 - [x] __neural network architecture__ primarily used for __natural language processing__.
-- [x] key feature: __attention mechanism__, allowing it to capture complex relationships in sequential data. - - - [x] excel in tasks like __machine translation and text generation__. 
+- [x] key feature: __attention mechanism__, allowing it to capture complex relationships in sequential data.
+- [x] excel in tasks like __machine translation and text generation__. 
 - [x] famous models such as GPT and BERT employ transformer architectures.
 
 ## Shallow neuristics
@@ -63,7 +64,7 @@ Points of interest:
     a. __optimization algorithms__: improve the model's __ability to generate coherent and contextually relevant text__, while minimizing errors and maximizing language understanding. 
 5. __Evaluation:__ assessing the performance of the trained model using various metrics such as __perplexity, accuracy, or BLEU score__ (Bilingual Evaluation Understudy).
 6. __Fine-tuning__ (optional): fine-tuning the pre-trained model on a __specific task or domain__ to improve its performance for a particular application.
-7. __Deployment__
+7. __Deployment__.
 
 ## Transfer learning
 
