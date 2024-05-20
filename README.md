@@ -92,14 +92,16 @@ Generate a train (size: 70) & a test dataset (size: 30):
 
 ##### Test set -->
 
+__Difficulty: ⭐__
+__Duration: 30 minutes__
+
+! Decode the tokenizer.pad_token to add it to our synthetic completions.
+
 📚 Doc:
-- [Hugging Face - Create dataset](https://huggingface.co/docs/datasets/create_dataset)
+- [Hugging Face 🤗 Create dataset](https://huggingface.co/docs/datasets/create_dataset)
 - stackoverflow
-- GPT-3.5
 
-### Difficulty: ⭐
-
-### Task 2: Evaluate models
+## Task 2: Evaluate models
 
 Reasons for avoiding generate() function:
 - [x] Customization of the generation process
@@ -108,13 +110,88 @@ Reasons for avoiding generate() function:
 - [x] Control over model + behavior
 - [x] [If there are needs during inference and training stages (generate() can only be used at inference time](https://discuss.huggingface.co/t/what-is-the-difference-between-forward-and-generate/10235)
 
+#### How does it work?
+- Create a dataset_batches where the step=batch_size. Advantages = optimization+parallelism, PyTorch/TensorFlow are optimized for processing batches of data in parallel.
+- Iterate on batches and for each get prompts/completions.
+
+#### Gradients activation/desactivation
+- Activation:
+    - [x] Training stage -> learn model params
+    - [x] Calculated + used to adjust model params to minimize the loss on the training data
+- Desactivation:
+    - [x] Inference / evaluation stages
+    - [x] No parameter adjustments are made because the parameters have already been learned during training.
+
+__Difficulty: ⭐⭐__
+__Duration: 1h__
+
 📚 Doc:
-- [Hugging face - Evaluate predictions](https://huggingface.co/docs/datasets/metrics)
-- [Hugging face - Utilities for Tokenizers: understand PreTrainedTokenizerBase, params + returns](https://huggingface.co/transformers/v4.0.1/internal/tokenization_utils.html)
-- [Hugging Face - Inference](https://huggingface.co/docs/huggingface_hub/package_reference/inference_client)
+- [Hugging face 🤗 Evaluate predictions](https://huggingface.co/docs/datasets/metrics)
+- [Hugging face 🤗 Utilities for Tokenizers: understand PreTrainedTokenizerBase, params + returns](https://huggingface.co/transformers/v4.0.1/internal/tokenization_utils.html)
+- [Hugging Face 🤗 Inference](https://huggingface.co/docs/huggingface_hub/package_reference/inference_client)
 - [Inference PyTorch Models](https://onnxruntime.ai/docs/tutorials/accelerate-pytorch/pytorch.html)
 
-### Difficulty: 
+## Task 3: Test your evaluator
+
+1. Init DummyModel class constructor
+2. Implement a customized forward method
+
+__Difficulty: ⭐⭐⭐⭐__
+__Duration: 2h__
+
+📚 Doc:
+- [x] [Hugging face 🤗 GPT Neo](https://huggingface.co/docs/transformers/model_doc/gpt_neo)
+
+## Task 4: Transfer Learning
+
+__Difficulty: ⭐⭐⭐__
+__Duration: 1h__
+
+Hyperparameters: set to control the training process + can influence performance of the model. It can be:
+- learning rate
+- batch size
+- number of epochs
+- optimizer
+- regularization parameters
+- dropout rate
+- model architecture choices: number of layers in a neural network, number of neurons/layer, ...
+
+What I tried:
+- change learning rate, epochs, batch_size
+
+📚 Doc:
+- [x] [Hugging face 🤗 Causal language modeling | Train](https://huggingface.co/docs/transformers/tasks/language_modeling)
+- [x] [Hugging face 🤗 Evaluate - A library for easily evaluating machine learning models and datasets](https://huggingface.co/docs/evaluate/index)
+- [x] [Hugging face 🤗 Evaluate - transformers](https://huggingface.co/docs/evaluate/transformers_integrations)
+- [x] [Stackoverflow - Using huggingface transformers trainer method for hugging face datasets](https://stackoverflow.com/questions/74223324/using-huggingface-transformers-trainer-method-for-hugging-face-datasets)
+- [x] [Error using transformers Trainer - remove_unused_columns=False](https://discuss.huggingface.co/t/indexerror-invalid-key-16-is-out-of-bounds-for-size-0/14298/24)
+- [x] [PyTorch 🔥 torch.optim](https://pytorch.org/docs/stable/optim.html)
+
+## Task 5: Have we tested our hypothesis?
+
+#### Other experiment
+- Exploring a task that requires a balance between the nature of the words: nouns, verbs, adjectives, numbers.
+
+#### Code's improvements
+- Task 1: OK
+- Task 2: truncate completions to improve DummyModel's accuracy
+- Task 3: 
+    - constructor
+    - search more if forward params are useful
+    - logits instantiation / initialization / storage
+- Task 4: develop training stage
+
+#### Execution of this experiment
+- See the impact of a different dataset (size & quality)
+- Test hypothesis with differents SLMs
+
+Doc:
+- [x] [Tiny but mighty: The Phi-3 small language models with big potential](https://news.microsoft.com/source/features/ai/the-phi-3-small-language-models-with-big-potential/)
+
+__Difficulty: ⭐__
+__Duration: 30 minutes__
+
+## Task 6: [Optional] Explore
 
 <!-- # Improvements -->
 
